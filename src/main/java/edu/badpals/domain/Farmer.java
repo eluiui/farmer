@@ -1,38 +1,30 @@
 package edu.badpals.domain;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 @Entity
-@Table (name = "fruit")
-@ToString @NoArgsConstructor 
-public class Fruit {
-
-     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+@Table(name = "farmer")
+public class Farmer {
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
     private @Getter Long id; 
     
-
-	@Column(name="name")
+	@JoinColumn(name="name")
 	private @Getter @Setter String name;
 
+	@JoinColumn(name="location")
+	private @Getter String location;
 
-	@Column(name="description")
-	private @Getter String description;
-	
-    @ManyToOne
-	@JoinColumn(name="farmer_id")
-	private @Getter Farmer farmer;
-
-
+     @OneToMany(mappedBy = "farmer")
+    public Set<Fruit> fruits;
 }
