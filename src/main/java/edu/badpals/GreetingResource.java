@@ -1,4 +1,4 @@
-package org.acme;
+package edu.badpals;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
