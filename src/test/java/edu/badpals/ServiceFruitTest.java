@@ -1,14 +1,15 @@
-package org.pingpong.restjson;
+package edu.badpals;
 
 import java.util.Optional;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 /**
  * Component Unit testing
