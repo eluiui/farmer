@@ -2,29 +2,33 @@ package edu.badpals.domain;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+
 @Entity
 @Table(name = "farmer")
-public class Farmer {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-    private @Getter Long id; 
-    
-	@JoinColumn(name="name")
-	private @Getter @Setter String name;
+public class Farmer extends PanacheEntity {
 
-	@JoinColumn(name="location")
-	private @Getter String location;
+	@Column(unique = true)
+	public String name;
 
-     @OneToMany(mappedBy = "farmer")
-    public Set<Fruit> fruits;
+	@Column
+	public String location;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "farmer")
+	public Set<Fruit> fruits;
+
+	public Farmer() {
+	}
+
+	public Farmer(String name, String location) {
+		this.name = name;
+		this.location = location;
+	}
 }
