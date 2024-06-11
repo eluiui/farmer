@@ -7,6 +7,5 @@ import lombok.NoArgsConstructor;
 
 @ApplicationScoped @NoArgsConstructor
 public class ServiceFruit {
-    @Inject
-    Repositorio repositorio;
+    
 }
