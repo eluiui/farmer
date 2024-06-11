@@ -36,4 +36,9 @@ public class ServiceFruit {
             fruit.get().delete();
         }
     }
+    public Optional<Fruit> getFruit(String name) {
+        return name.isBlank()? 
+            Optional.ofNullable(null) : 
+            Fruit.find("name", name).firstResultOptional();
+    }
 }
