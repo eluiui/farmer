@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.NoArgsConstructor;
@@ -27,5 +28,12 @@ public class ServiceFruit {
             fruit.farmer.persist();
         }
         fruit.persist();
+    }
+    public void remove(String name){
+
+        Optional<Fruit> fruit = Fruit.find("name", name).firstResultOptional();
+        if(fruit.isPresent()){
+            fruit.get().delete();
+        }
     }
 }
